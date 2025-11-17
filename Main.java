@@ -1,10 +1,19 @@
-import model.Book;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import controller.BookController;
+import model.Book;
 import view.BookView;
+
 import java.util.*;
 
 public class Main {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
+        logger.info("Старт програми BookMVCApp");
+
         List<Book> books = Arrays.asList(
                 new Book("Тіні забутих предків", "М.Коцюбинський", "Веселка", 1911, 250, 250.0),
                 new Book("Кобзар", "Т.Шевченко", "Основи", 1840, 350, 300.0),
@@ -20,6 +29,10 @@ public class Main {
 
         BookView view = new BookView();
         BookController controller = new BookController(books, view);
+
+        logger.info("Запуск контролера");
         controller.execute();
+
+        logger.info("Завершення програми BookMVCApp");
     }
 }
