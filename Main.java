@@ -15,14 +15,11 @@ public class Main {
 
         logger.info("Старт програми BookMVCApp");
 
-        // Початкова мова інтерфейсу — українська
         ResourceBundle bundle = ResourceBundle.getBundle("location.messages_uk");
         logger.info("Початкова мова інтерфейсу: uk");
 
-        // Створення View з підтримкою локалізації
         BookView view = new BookView(bundle);
 
-        // Початковий список книг
         List<Book> books = Arrays.asList(
                 new Book("Тіні забутих предків", "М.Коцюбинський", "Веселка", 1911, 250, 250.0),
                 new Book("Кобзар", "Т.Шевченко", "Основи", 1840, 350, 300.0),
@@ -36,7 +33,6 @@ public class Main {
                 new Book("Тигролови", "І.Багряний", "А-БА-БА-ГА-ЛА-МА-ГА", 1944, 300, 290.0)
         );
 
-        // Створення контролера
         BookController controller = new BookController(books, view);
 
         logger.info("Запуск контролера");
