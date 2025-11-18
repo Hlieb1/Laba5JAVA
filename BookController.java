@@ -58,6 +58,7 @@ public class BookController {
                     case 8 -> decryptFile();
                     case 9 -> analyzeURL();
                     case 10 -> findMaxWordsLine();
+                    case 11 -> changeLanguage();
                     case 0 -> logger.info("Вихід з програми");
                     default -> {
                         view.displayMessage("Невірний вибір, спробуйте ще раз.");
@@ -162,4 +163,21 @@ public class BookController {
         String path = scanner.nextLine();
         util.FileManager.findLineWithMostWords(path);
     }
+    
+    private void changeLanguage() {
+        System.out.print(view.getBundle().getString("msg.languageChoose") + " ");
+        String lang = scanner.nextLine().trim().toLowerCase();
+
+        ResourceBundle newBundle;
+
+        if (lang.equals("en")) {
+            newBundle = ResourceBundle.getBundle("location.messages_en");
+        } else {
+            newBundle = ResourceBundle.getBundle("location.messages_uk");
+        }
+
+        view.changeLanguage(newBundle);
+        System.out.println(view.getBundle().getString("msg.languageSet") + " " + lang);
+    }
+
 }
