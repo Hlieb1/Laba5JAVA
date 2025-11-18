@@ -1,31 +1,42 @@
 package view;
 
-import model.Book;
 import java.util.List;
+import java.util.ResourceBundle;
+
+import model.Book;
 
 public class BookView {
 
+    private ResourceBundle bundle;
+
+    public BookView(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
+
+    public void changeLanguage(ResourceBundle newBundle) {
+        this.bundle = newBundle;
+    }
+
     public void showMenu() {
-        System.out.println("""
-                \n========= МЕНЮ =========
-                1 — Знайти книги за автором
-                2 — Знайти книги за видавництвом
-                3 — Книги після певного року
-                4 — Відсортувати за видавництвом
-                5 — Зберегти книги у файл
-                6 — Прочитати книги з файлу
-                7 — Шифрувати файл
-                8 — Дешифрувати файл
-                9 — Аналіз тегів із URL
-                10 — Знайти рядок із найбільшою кількістю слів у файлі
-                0 — Вихід
-                """);
-        System.out.print("Ваш вибір: ");
+        System.out.println("\n" + bundle.getString("menu.title"));
+        System.out.println(bundle.getString("menu.author"));
+        System.out.println(bundle.getString("menu.publisher"));
+        System.out.println(bundle.getString("menu.year"));
+        System.out.println(bundle.getString("menu.sort"));
+        System.out.println(bundle.getString("menu.save"));
+        System.out.println(bundle.getString("menu.read"));
+        System.out.println(bundle.getString("menu.encrypt"));
+        System.out.println(bundle.getString("menu.decrypt"));
+        System.out.println(bundle.getString("menu.url"));
+        System.out.println(bundle.getString("menu.words"));
+        System.out.println(bundle.getString("menu.language"));
+        System.out.println(bundle.getString("menu.exit"));
+        System.out.print(bundle.getString("menu.choice") + " ");
     }
 
     public void showBooks(List<Book> books) {
         if (books == null || books.isEmpty()) {
-            System.out.println("Книг не знайдено.");
+            System.out.println(bundle.getString("msg.noBooks"));
         } else {
             books.forEach(System.out::println);
         }
@@ -33,5 +44,9 @@ public class BookView {
 
     public void displayMessage(String msg) {
         System.out.println(msg);
+    }
+
+    public ResourceBundle getBundle() {
+        return bundle;
     }
 }
